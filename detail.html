@@ -20,17 +20,29 @@
   <div class="form-group">
     <label for="in1">Descrição</label>
     <input type="text" class="form-control" id="in1" ng-model="offer.desc" >
-
-    <label for="in2">Quarto</label>
-    <input type="text" class="form-control" id="in2" ng-model="offer.room">
-
-    <label for="in3">Preço</label>
-    <input type="text" class="form-control" id="in3" ng-model="offer.price">
-
-    <label for="in4">Desconto</label>
-    <input type="text" class="form-control" id="in4" ng-model="offer.discount">
-
   </div>
+  <div class="form-group"> 
+    <div class="row">
+      <div class="col-md-4">
+        <label for="in2">Tipo de Quarto</label>
+        <input type="text" class="form-control" id="in2" ng-model="offer.room">
+      </div>
+      <div class="col-md-4">
+
+        <label for="in3">Preço</label>
+        <input type="text" class="form-control" id="in3" ng-model="offer.price">
+      </div>
+      <div class="col-md-4">
+        <label for="in4">Desconto</label>
+        <input type="text" class="form-control" id="in4" ng-model="offer.discount">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="in5">Imagens</label>
+    <textarea class="form-control" ng-model="offer.imgs" ng-list=','></textarea>  
+  </div>
+
   </fieldset>
 </form>
 

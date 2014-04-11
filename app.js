@@ -70,8 +70,11 @@ angular.module('App', ['firebase'])
     } else {
       $scope.editMode = false;
       $scope.newMode = false;
+
     }
     $scope.offer = angular.copy($scope.curOffer); 
+    
+  
   });
 
   $scope.cancel = function() {
@@ -81,12 +84,15 @@ angular.module('App', ['firebase'])
 
   $scope.save = function() {
     $scope.editMode = false;
+    
     if ($scope.newMode) {
       Data.addOffer($scope.offer);
     } else {
       Data.updateOffer($scope.curOffer,$scope.offer);
     }
     $scope.newMode = false;
+
+
   };
 
   $scope.edit = function() {
