@@ -1,0 +1,46 @@
+<div class="modal fade" id="deleteAlert">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <p>Deseja eliminar esta oferta?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="delete()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<form role="form">
+  <fieldset ng-disabled="!editMode">
+  <div class="form-group">
+    <label for="in1">Descrição</label>
+    <input type="text" class="form-control" id="in1" ng-model="offer.desc" >
+
+    <label for="in2">Quarto</label>
+    <input type="text" class="form-control" id="in2" ng-model="offer.room">
+
+    <label for="in3">Preço</label>
+    <input type="text" class="form-control" id="in3" ng-model="offer.price">
+
+    <label for="in4">Desconto</label>
+    <input type="text" class="form-control" id="in4" ng-model="offer.discount">
+
+  </div>
+  </fieldset>
+</form>
+
+<div class="pull-left">
+  <button ng-hide="newMode" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteAlert">Eliminar</button>
+</div>
+<div class="pull-right">
+  <button ng-show="editMode"  type="button" class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+  <button ng-show="editMode" type="button" class="btn btn-success" ng-click="save()">Gravar</button>
+  <button ng-hide="editMode" type="button" class="btn btn-primary" ng-click="edit()">Editar</button>
+</div>
+
+

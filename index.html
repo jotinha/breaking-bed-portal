@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="App">
+<head>
+  <meta charset="utf-8">
+  <title>Breaking Bed Service</title>
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  
+  <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script> 
+  <!--script src="angular-ui-router.min.js"></script-->
+
+  <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+  
+  <!--script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script-->
+  
+  <script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+
+<div class="container" ng-controller="DashboardCtrl">
+  <h1>Breaking Bed Control Center</h1>
+
+    <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="newOffer()">Criar nova oferta</button>
+
+  <h2>Ofertas</h2>
+
+  <table class="table table-hover" id="table-offers">
+    <tr ng-repeat="(key,offer) in offers" ng-click="setOffer(key)">
+      <td>{{offer.desc}}</td>
+      <td>{{offer.price}}</td>
+      <td></td>
+    </tr>
+  </table>
+
+
+  <div ng-show="curOffer !== undefined" id="detailArea" ng-include="'detail.html'" ng-controller="DetailCtrl">
+  
+
+    
+  </div>
+
+
+</div>
+
+
+</body>
+</html>
