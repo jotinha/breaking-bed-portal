@@ -15,12 +15,21 @@ angular.module('App', ['firebase'])
 
 .service('Data', function($firebase) {
 
-  var dataUrl = "https://lastminute.firebaseio.com/" + ID;
+  var dataUrl = "https://lastminute.firebaseio.com/";
   var dataRef = new Firebase(dataUrl);
   var data = $firebase(dataRef);
-  var offers = data.$child('offers');
-  
+  var offers, hotel;
+    
   return {
+
+    getData: function() {
+      return data;
+    },
+
+    setHotel: function(id) {
+      hotel = data.$child(id);
+      offers = data.$child(id+'/offers');
+    },
 
     getOffers: function() {
       return offers;
@@ -48,7 +57,14 @@ angular.module('App', ['firebase'])
 
 .controller('DashboardCtrl', function($scope,$firebase,Data) {
 
-  $scope.offers = Data.getOffers();
+  $scope.data = Data.getData();
+
+  $scope.$watch('id', function() {
+    Data.setHotel($scope.id);
+    $scope.offers = Data.getOffers();
+  });
+
+  $scope.id = 2133;
 
   $scope.newOffer = function() {
     $scope.curOffer  = makeNewOffer();
@@ -58,7 +74,6 @@ angular.module('App', ['firebase'])
    $scope.curOffer = Data.getOffer(key);
   };
 
-
 })
 
 .controller('DetailCtrl', function($scope,Data) {
@@ -67,15 +82,18 @@ angular.module('App', ['firebase'])
     if (isNewOffer($scope.curOffer)) {
       $scope.editMode = true;
       $scope.newMode = true;
+
     } else {
       $scope.editMode = false;
       $scope.newMode = false;
 
     }
     $scope.offer = angular.copy($scope.curOffer); 
-    
+    $scope.deadline = {};
   
   });
+
+  $scope.deadline = {};
 
   $scope.cancel = function() {
     $scope.editMode = false;
@@ -84,7 +102,9 @@ angular.module('App', ['firebase'])
 
   $scope.save = function() {
     $scope.editMode = false;
-    
+
+    $scope.offer.deadline = new Date($scope.deadline.date + ' ' + $scope.deadline.time);
+
     if ($scope.newMode) {
       Data.addOffer($scope.offer);
     } else {

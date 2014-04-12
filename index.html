@@ -15,15 +15,27 @@
   <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
   
   <!--script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script-->
+  <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+  </script>
   
   <script type="text/javascript" src="app.js"></script>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+
+
 </head>
 <body>
 
 <div class="container" ng-controller="DashboardCtrl">
-  <h1>Breaking Bed Control Center</h1>
+  
+  <div class="page-header">
+    <h1>Breaking Bed Control Center</h1>
+  </div>
 
-    <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="newOffer()">Criar nova oferta</button>
+  <button type="button" class="btn btn-primary btn-lg" ng-click="newOffer()">Criar nova oferta</button>
+
+  <select class="pull-right" ng-model="id" ng-options="k as k for (k,one) in data"></select>
 
   <h2>Ofertas</h2>
 
