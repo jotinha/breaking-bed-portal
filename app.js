@@ -103,7 +103,12 @@ angular.module('App', ['firebase'])
   $scope.save = function() {
     $scope.editMode = false;
 
-    $scope.offer.deadline = new Date($scope.deadline.date + ' ' + $scope.deadline.time);
+    if ($scope.deadline.date && $scope.deadline.time) {
+      var date = new Date($scope.deadline.date + ' ' + $scope.deadline.time);
+      $scope.offer.deadline = date.valueOf();
+    } else {
+      $scope.offer.deadline = $scope.curOffer.deadline;
+    }
 
     if ($scope.newMode) {
       Data.addOffer($scope.offer);
